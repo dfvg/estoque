@@ -1,4 +1,12 @@
 
+body {
+	font-family: "Raleway", sans-serif;
+}
+
+h1, h2 {
+	font-weight: 700;
+}
+
 nav.navbar.navbar-default{
 	background-color: #337ab7;
 	border-color: #2e6da4;
@@ -9,9 +17,16 @@ nav.navbar.navbar-default a {
 	color: white;
 }
 
+nav.navbar.navbar-default a:hover {
+	color: white;
+	text-decoration: underline;
+}
+
 li p.navbar-text, a.navbar-brand {
 	color: white!important;
-	font-weight: bolder;
+	font-weight: bold;
+	background-color: #337ab7!important;
+	text-decoration: none!important;
 }
 
 footer.footer {

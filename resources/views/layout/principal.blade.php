@@ -18,14 +18,18 @@
         </div>
 
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="/produtos">
-              Listagem
-            </a>
-          </li>
+          <li><a href="{{action('ProdutoController@lista')}}">Listagem</a></li>
+          <li><a href="{{action('ProdutoController@novo')}}">Novo</a></li>
         </ul>
 
-    @yield('conteudo')
+      </div>
+    </nav>
+
+@yield('conteudo')
+
+    <footer class="footer">
+      <p>Sistema de Gestão de Estoques</p>
+    </footer>
 
   </div>
 
