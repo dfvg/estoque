@@ -15,7 +15,7 @@
 {{-- Mensagens das Ações Inser, Update, Delete --}}
 @if(old('nome'))
   <div class="alert alert-success">
-    <strong>Sucesso</strong>
+    <strong>Sucesso!</strong>
     O produto {{ old('nome') }} foi adicionado.
   </div>
 @endif
@@ -47,12 +47,14 @@
 </table>
 @endif
 
-@if($p->quantidade <= 1)
-<h4>
-  <span class="label label-danger pull-right">
-    Um ou menos itens no estoque
-  </span>
-</h4>
-@endif
+
+  {{-- @if($p->quantidade<= 1) --}}
+  <h4>
+    <span class="label label-danger pull-right">
+      Um ou menos itens no estoque
+    </span>
+  </h4>
+  {{-- @endif --}}
+
 
 @stop

@@ -4,6 +4,11 @@
 
 <h1>Novo Produto</h1>
 
+@foreach($errors->all() as $error)
+  {{ $error }}
+@endforeach
+
+
 <form action="/produtos/adiciona" method="post">
 
   <input type="hidden" name="_token" value="{{{csrf_token()}}}"/>
