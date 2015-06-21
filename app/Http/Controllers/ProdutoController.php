@@ -8,20 +8,18 @@ class ProdutoController extends Controller {
 
   //Método de consulta e listagem dos produtos
   public function lista() {
-
-    $produtos = DB::select('SELECT * FROM PRODUTOS');
+    $produtos = Produto::all();
     return view('produto.listagem')->with('produtos', $produtos);
 
   }
 
   //Método de consulta para a página de detalhes de produto
   public function mostra($id) {
-
-    $resposta = DB::select('SELECT * FROM PRODUTOS WHERE ID = ?', [$id]);
-    if(empty($resposta)) {
+    $produto = Produto::find($id);
+    if(empty($produto)) {
       return "<h3>Esse produto não existe</h3>";
     }
-    return view('produto.detalhes')->with('p', $resposta[0]);
+    return view('produto.detalhes')->with('p', $produto);
   }
 
   //Método para chamar o formulário de novos produtos
@@ -31,30 +29,44 @@ class ProdutoController extends Controller {
 
   //Método para adicionar novos produtos
   public function adiciona() {
-
-    $nome = Request::input('nome');
-    $descricao = Request::input('descricao');
-    $valor = Request::input('valor');
-    $quantidade = Request::input('quantidade');
-
-    DB::insert('INSERT INTO PRODUTOS
-      (nome, descricao, valor, quantidade)
-      values (?,?,?,?)',
-      array($nome, $descricao, $valor, $quantidade)
-    );
-
+    Produto::create(Request::all());
     return redirect()
     ->action('ProdutoController@lista')
     ->withInput(Request::only('nome'));
-
   }
 
   //Método para exibir JSON
-  public function listaJSON(){
+  public function listaJSON() {
+    $produtos = Produto::all();
+    return response()->json($produtos);
+  }
 
-    $produtos = DB::select('SELECT * FROM PRODUTOS');
+  //Método para remover produtos
+  public function remove($id) {
+    $produto = Produto::find($id);
+    $produto->delete();
+    return redirect()
+    ->action('ProdutoController@lista')
+    ->withInput(Request::only('nome'));
+  }
 
-    return $produtos;
+  //Método para chamar o formulario e editar produtos
+  public function editar($id) {
+    $produto = Produto::find($id);
+    if (empty($produto)) {
+      return '<h3>Este produto não existe</h3>';
+    }
+    return view('produto.formulario-editar')->with('p', $produto);
+  }
+
+  //Método para atualizar produtos
+  public function atualiza($id) {
+
+    $produto = Produto::find($id);
+    $produto->update(Request::all());
+    return redirect()
+    ->action('ProdutoController@lista')
+    ->withInput(Request::only('nome'));
   }
 
 

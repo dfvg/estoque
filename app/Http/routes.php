@@ -33,3 +33,9 @@ Route::get('/produtos/novo', 'ProdutoController@novo');
 Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
 
 Route::get('/produtos/json', 'ProdutoController@listaJSON');
+
+Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
+
+Route::post('/produtos/atualiza/{id}', 'ProdutoController@atualiza');
+
+Route::get('/produtos/editar/{id?}', 'ProdutoController@editar');
