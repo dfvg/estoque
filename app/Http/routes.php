@@ -11,13 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/', function() {
     return '<h1>Primeira lógica com Laravel</h1>';
 });
+
+Route::get('home', 'HomeController@index');
+
+Route::controllers([
+  'auth' => 'Auth\AuthController',
+  'password' => 'Auth\PasswordController',
+  ]);
+
 
 Route::get('/outra', function() {
     return '<h1>Outra lógica com Laravel</h1>';
@@ -39,3 +43,5 @@ Route::get('/produtos/remove/{id}', 'ProdutoController@remove');
 Route::post('/produtos/atualiza/{id}', 'ProdutoController@atualiza');
 
 Route::get('/produtos/editar/{id?}', 'ProdutoController@editar');
+
+Route::get('/login', 'LoginController@login');

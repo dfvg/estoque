@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\DB;
 use estoque\Produto;
 use Request;
-use estoque\Http\Request\ProdutosRequest;
+use estoque\Http\Requests\ProdutosRequest;
 
 class ProdutoController extends Controller {
 

@@ -29,4 +29,10 @@ class ProdutosRequest extends Request
             'valor' => 'required|numeric'
         ];
     }
+
+    public function messages() {
+      return [
+      'required' => 'Por favor, preencha o campo :attribute.',
+    ];
+    }
 }
