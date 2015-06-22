@@ -4,8 +4,16 @@ use Illuminate\Support\Facades\DB;
 use estoque\Produto;
 use Request;
 use estoque\Http\Requests\ProdutosRequest;
+use Auth;
 
 class ProdutoController extends Controller {
+
+  //Adicionando proteção de login apenas para os métodos/actions abaixo
+  public function __construct() {
+    $this->middleware('auth',
+    ['only' => ['novo', 'adiciona', 'remove']]);
+  }
+
 
   //Método de consulta e listagem dos produtos
   public function lista() {
@@ -77,6 +85,9 @@ class ProdutoController extends Controller {
     ->action('ProdutoController@lista')
     ->withInput(Request::only('nome'));
   }
+
+
+
 
 
 }//fim da classe

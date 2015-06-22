@@ -23,5 +23,6 @@ class LoginController extends Controller
       return "As credenciais não são válidas.";
     }
 
-    
+
+
 }
