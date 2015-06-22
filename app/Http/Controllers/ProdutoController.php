@@ -3,11 +3,13 @@
 use Illuminate\Support\Facades\DB;
 use estoque\Produto;
 use Request;
+use estoque\Http\Requests\ProdutosRequest;
 
 class ProdutoController extends Controller {
 
   //Método de consulta e listagem dos produtos
   public function lista() {
+
     $produtos = Produto::all();
     return view('produto.listagem')->with('produtos', $produtos);
 
@@ -15,6 +17,7 @@ class ProdutoController extends Controller {
 
   //Método de consulta para a página de detalhes de produto
   public function mostra($id) {
+
     $produto = Produto::find($id);
     if(empty($produto)) {
       return "<h3>Esse produto não existe</h3>";
@@ -24,12 +27,15 @@ class ProdutoController extends Controller {
 
   //Método para chamar o formulário de novos produtos
   public function novo() {
+
     return view('produto.formulario');
   }
 
   //Método para adicionar novos produtos
-  public function adiciona() {
-    Produto::create(Request::all());
+  public function adiciona(ProdutosRequest $request) {
+
+    Produto::create($request->all());
+
     return redirect()
     ->action('ProdutoController@lista')
     ->withInput(Request::only('nome'));
@@ -37,12 +43,14 @@ class ProdutoController extends Controller {
 
   //Método para exibir JSON
   public function listaJSON() {
+
     $produtos = Produto::all();
     return response()->json($produtos);
   }
 
   //Método para remover produtos
   public function remove($id) {
+
     $produto = Produto::find($id);
     $produto->delete();
     return redirect()
@@ -52,6 +60,7 @@ class ProdutoController extends Controller {
 
   //Método para chamar o formulario e editar produtos
   public function editar($id) {
+
     $produto = Produto::find($id);
     if (empty($produto)) {
       return '<h3>Este produto não existe</h3>';
