@@ -7,11 +7,18 @@ h1, h2 {
 	font-weight: 700;
 }
 
-nav.navbar.navbar-default{
+nav.navbar.navbar-default, .dropdown-menu{
 	background-color: #337ab7;
 	border-color: #2e6da4;
 	margin-top: 10px;
 }
+
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  background-color: #337ab7;
+	color: #ffffff;
+}
+
 
 nav.navbar.navbar-default a {
 	color: white;
@@ -19,6 +26,7 @@ nav.navbar.navbar-default a {
 
 nav.navbar.navbar-default a:hover {
 	color: white;
+	background-color: #337ab7;
 	text-decoration: underline;
 }
 

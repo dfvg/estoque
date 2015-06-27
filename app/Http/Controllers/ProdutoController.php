@@ -11,7 +11,7 @@ class ProdutoController extends Controller {
   //Adicionando proteção de login apenas para os métodos/actions abaixo
   public function __construct() {
     $this->middleware('auth',
-    ['only' => ['novo', 'adiciona', 'remove']]);
+    ['only' => ['novo', 'adiciona', 'editar', 'atualiza', 'remove']]);
   }
 
 
